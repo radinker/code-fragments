@@ -1,0 +1,1 @@
+add_executable(fragment0 ${CMAKE_CURRENT_LIST_DIR}/src/HelloWorld.cpp)
