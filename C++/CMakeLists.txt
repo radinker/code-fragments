@@ -14,7 +14,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 #Include all fragments
-set(FRAGMENTS 1) # Total C++ fragments to be configured
+set(FRAGMENTS 2) # Total C++ fragments to be configured
 math(EXPR LIMIT "${FRAGMENTS} - 1" OUTPUT_FORMAT DECIMAL)
 
 foreach (F RANGE ${LIMIT})

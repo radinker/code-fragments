@@ -10,6 +10,7 @@
 #include <tuple>
 #include <variant>
 
+// Base class to represent a character
 template <typename T>
 class Character {
 public:
@@ -18,6 +19,7 @@ public:
     }
 };
 
+// Actual characters inherit from base using CRTP
 class A: public Character<A> {
 public:
     static void print() {
@@ -32,6 +34,7 @@ public:
     }
 };
 
+// The characters will be contained using std::tuple and std::variant
 template<typename... Args>
 using CharTuple = std::tuple<Character<Args>...>;
 
