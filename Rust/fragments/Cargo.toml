@@ -1,0 +1,9 @@
+[package]
+name = "fragments"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "fragment_0"
+
+[dependencies]
