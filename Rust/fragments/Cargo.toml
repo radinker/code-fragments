@@ -7,3 +7,4 @@ edition = "2021"
 name = "fragment_0"
 
 [dependencies]
+rand = "0.8.5"
