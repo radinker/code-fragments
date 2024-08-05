@@ -1,8 +1,8 @@
 // ====================================================================================
-//  Fragment 0 -- Async Executor
-//  author:       Jose Arboleda
-//  date:         2024
-//  copyright:    MIT License
+//  brief         Fragment 0 -- Async Executor
+//  author        Jose Arboleda
+//  date          2024
+//  copyright     MIT License
 // ====================================================================================
 use std::future::Future;
 use std::pin::{Pin, pin};
