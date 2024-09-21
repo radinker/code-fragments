@@ -23,7 +23,7 @@ const  IO_READY:   i32 = 2;
 const  IO_DELAY:   u64 = 1;
 
 
-// Just a function to perform some dummy IO and set the IO_VALUE to a random number
+// Just a function to perform some dummy IO and return a random number
 fn perform_io() -> u32 {
     let mut rng = rand::thread_rng();
 
@@ -100,7 +100,7 @@ impl Future for FutureValue {
 
         println!("Polling FutureValue...");
 
-        // When the I/O operation is completed, consume and return the IO_VALUE
+        // When the I/O operation is completed, consume and return the result
         if io_status == IO_READY {
             self.data.status.store(IO_IDLE, Ordering::SeqCst);
             return Poll::Ready(self.data.result.load(Ordering::SeqCst));
