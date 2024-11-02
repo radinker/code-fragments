@@ -8,13 +8,13 @@
 cmake_minimum_required(VERSION 3.25)
 
 # Project name and version
-project(CodeFragmentsCPP VERSION 0.1.0)
+project(CodeFragmentsCPP VERSION 0.2.0)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 #Include all fragments
-set(FRAGMENTS 2) # Total C++ fragments to be configured
+set(FRAGMENTS 3) # Total C++ fragments to be configured
 math(EXPR LIMIT "${FRAGMENTS} - 1" OUTPUT_FORMAT DECIMAL)
 
 foreach (F RANGE ${LIMIT})
