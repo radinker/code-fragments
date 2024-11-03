@@ -42,14 +42,13 @@ int main()
     // Arguments are passed in a variant container
     auto args = Glib::VariantContainerBase::create_tuple({interfaceVariant, propertyVariant});
 
-
     try {
         // Perform a DBus sync call to the hostname interface
         auto hostName = hostNameProxy->call_sync(method, args);
 
         // Get the variant value. DBus result is of type Variant<Variant<T>>
         auto val = Glib::VariantBase::cast_dynamic<Glib::Variant<Glib::Variant<Glib::ustring>>>
-                (hostName.get_child()).get().get();
+        (hostName.get_child()).get().get();
 
         std::cout << "Value: " << val << "\n";
         std::cout << "Type: "  << hostName.get_child().get_type_string().data() << "\n";
