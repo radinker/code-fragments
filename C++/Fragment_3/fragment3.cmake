@@ -1,0 +1,1 @@
+add_executable(fragment3 ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp)
