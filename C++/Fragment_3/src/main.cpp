@@ -10,8 +10,10 @@
 #include <map>
 #include <new>
 #include <stdexcept>
-#include <sys/mman.h>
 #include <vector>
+
+//Linux headers
+#include <sys/mman.h>
 
 // A custom memory allocator using the Linux mmap system call
 template<typename T>
@@ -20,10 +22,8 @@ public:
     using value_type = T;
 
     static T* allocate(size_t n) {
-#ifndef __linux__
-        throw std::runtime_error("platform not supported");
-#endif
         void* ptr = mmap(nullptr, n, PROT_READ|PROT_WRITE, MAP_ANONYMOUS|MAP_PRIVATE, -1, 0);
+
         if (ptr == reinterpret_cast<void*>(-1)) {
             std::cerr << "Memory allocation failed with code: " << errno << "\n";
             throw std::bad_alloc();
