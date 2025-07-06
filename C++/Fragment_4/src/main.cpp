@@ -12,8 +12,6 @@
 #include <openssl/sha.h>
 #include <stdexcept>
 
-#include <bit>
-
 // This wrapper attempts to load libssl and expose some functions using GNU Dynamic Link Library
 class LibSSL {
     void* m_pLibHandle = nullptr;
