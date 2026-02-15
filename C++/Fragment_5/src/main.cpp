@@ -2,12 +2,11 @@
 ///  \brief      Fragment 5 -- Copy and Swap
 //!  \file       main.cpp
 //!  \author     Jose Arboleda
-//!  \date       2025
+//!  \date       2026
 //!  \copyright  MIT License
 //!/////////////////////////////////////////////////////////////////////////////
 #include <iostream>
-#include <memory>
-#include <type_traits>
+//#include <type_traits>
 #include <utility>
 
 class X {
@@ -35,9 +34,22 @@ public:
         }
     }
 
+    X(X&&) noexcept = default;
+
     ~X() {
         std::cout << "Destroying X\n";
         delete[] data;
+    }
+
+    X& operator=(const X& obj) {
+        // Explicit copy of obj. If an exception occurs in the copy constructor, this instance won't be modified
+        return copyAndSwap(obj);
+    }
+
+    X& operator=(X&& obj) noexcept {
+        std::cout << "Move assignment\n";
+        std::swap(data, obj.data);
+        return *this;
     }
 
     void print() const {
@@ -47,11 +59,16 @@ public:
         std::cout << std::endl;
     }
 
-    template<typename T>
+    /*template<typename T>
     X& operator=(T&& obj) noexcept {
         using check_type = std::remove_reference_t<T>;
         static_assert(std::is_same_v<check_type, X> && !std::is_lvalue_reference_v<T>, "X::operator= is bounded to X, X&& only");
-        
+
+        std::swap(data, obj.data);
+        return *this;
+    }*/
+private:
+    X& copyAndSwap(X obj) noexcept {
         std::swap(data, obj.data);
         return *this;
     }
@@ -61,12 +78,11 @@ int main()
 {
     X x;
 
-    x = static_cast<X>(x); // Explicit copy and swap
-    x = std::move(x);         // Explicit move assignment
-    //x = x;                  // Compilation error, prevents from implicitly moving an l-value
+    x = std::move(x);   // Explicit move assignment
+    x = x;              // Copy and swap
     x.print();
 
-    x = X{};                  // Move assignment
+    x = X{};            // Move assignment
     x.print();
 
     return 0;
