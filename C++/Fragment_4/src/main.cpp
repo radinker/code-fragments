@@ -2,7 +2,7 @@
 ///  \brief      Fragment 4 -- Dynamic Library Loader
 //!  \file       main.cpp
 //!  \author     Jose Arboleda
-//!  \date       2025
+//!  \date       2025-2026
 //!  \copyright  MIT License
 //!/////////////////////////////////////////////////////////////////////////////
 #include <cstring>
@@ -62,7 +62,7 @@ class LibSSL {
     }
 
 public:
-    static LibSSL* getInstance()
+    static const LibSSL* getInstance()
     {
         try
         {
