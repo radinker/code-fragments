@@ -8,12 +8,14 @@ if(CMAKE_COMPILER_IS_GNUCXX)
   set(SYS_MODULES_COMPILE_OPTIONS -fmodules-ts -c -xc++-system-header)
 
   # GNU g++ modules cache.
-  set(CPP_MODULES_CACHE gcm.cache)
+  set(CPP_MODULES_CACHE "gcm.cache")
 
   message(STATUS "Generating CPP modules cache...")
 
   # Generate the gcm files for iostream and string.
-  execute_process(COMMAND ${CMAKE_CXX_COMPILER} -std=c++${CMAKE_CXX_STANDARD} ${SYS_MODULES_COMPILE_OPTIONS} iostream string
+  execute_process(COMMAND ${CMAKE_CXX_COMPILER}
+                          -std=c++${CMAKE_CXX_STANDARD}
+                          ${SYS_MODULES_COMPILE_OPTIONS} iostream string
                   RESULT_VARIABLE RESULT)
 
   # Target to clean the CPP modules cache.
