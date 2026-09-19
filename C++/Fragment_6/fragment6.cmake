@@ -1,21 +1,32 @@
 # This C++ modules example is dependent on the GNU C++ compiler.
 # Compiler commands:
-# g++ -std=c++23 -fmodules-ts -x c++-system-header iostream
-# g++ -std=c++23 -fmodules-ts -x c++-system-header string
+# g++ -std=c++20 -fmodules-ts -c -x c++-system-header iostream string
 # g++ -std=c++23 -fmodules-ts -c dummy.cpp
 # g++ -std=c++23 -fmodules-ts main.cpp dummy.o
 if(CMAKE_COMPILER_IS_GNUCXX)
   # Compiler options to generate the gcm files for the system modules being used.
-  set(SYS_MODULES_COMPILE_OPTIONS -fmodules-ts -xc++-system-header)
+  set(SYS_MODULES_COMPILE_OPTIONS -fmodules-ts -c -xc++-system-header)
+
+  # GNU g++ modules cache.
+  set(CPP_MODULES_CACHE gcm.cache)
+
+  message(STATUS "Generating CPP modules cache...")
 
   # Generate the gcm files for iostream and string.
-  add_custom_target(iostream_module COMMAND ${CMAKE_CXX_COMPILER} -std=c++${CMAKE_CXX_STANDARD} ${SYS_MODULES_COMPILE_OPTIONS} iostream)
-  add_custom_target(string_module COMMAND ${CMAKE_CXX_COMPILER} -std=c++${CMAKE_CXX_STANDARD} ${SYS_MODULES_COMPILE_OPTIONS} string)
+  execute_process(COMMAND ${CMAKE_CXX_COMPILER} -std=c++${CMAKE_CXX_STANDARD} ${SYS_MODULES_COMPILE_OPTIONS} iostream string
+                  RESULT_VARIABLE RESULT)
+
+  # Target to clean the CPP modules cache.
+  add_custom_target(clean_cpp_modules COMMAND rm -rf ${CMAKE_CURRENT_BINARY_DIR}/${CPP_MODULES_CACHE})
+
+  if(NOT RESULT EQUAL 0)
+      message(WARNING "Could not generate CPP modules cache. Fragment 6 is broken.\n"
+              "Try clean_cpp_modules target and generate again.")
+  endif()
 
   # Target for the dummy module.
   add_library(dummy OBJECT ${CMAKE_CURRENT_LIST_DIR}/src/dummy.cpp)
   target_compile_options(dummy PRIVATE -fmodules-ts PRIVATE -c)
-  add_dependencies(dummy iostream_module string_module)
 
   # Target for the fragment.
   add_executable(fragment6 ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp)
