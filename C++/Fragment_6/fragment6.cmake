@@ -7,9 +7,6 @@ if(CMAKE_COMPILER_IS_GNUCXX)
   # Compiler options to generate the gcm files for the system modules being used.
   set(SYS_MODULES_COMPILE_OPTIONS -fmodules-ts -c -xc++-system-header)
 
-  # GNU g++ modules cache.
-  set(CPP_MODULES_CACHE "gcm.cache")
-
   message(STATUS "Cleaning gcm.cache...")
   file(REMOVE_RECURSE ${CMAKE_CURRENT_BINARY_DIR}/gcm.cache)
 
@@ -22,8 +19,7 @@ if(CMAKE_COMPILER_IS_GNUCXX)
                   RESULT_VARIABLE RESULT)
 
   if(NOT RESULT EQUAL 0)
-      message(WARNING "Could not generate CPP modules cache. Fragment 6 is broken.\n"
-              "Try clean_cpp_modules target and generate again.")
+      message(WARNING "Could not generate CPP modules cache. Fragment 6 is broken.\n")
   endif()
 
   # Target for the dummy module.
