@@ -10,6 +10,9 @@ if(CMAKE_COMPILER_IS_GNUCXX)
   # GNU g++ modules cache.
   set(CPP_MODULES_CACHE "gcm.cache")
 
+  message(STATUS "Cleaning gcm.cache...")
+  file(REMOVE_RECURSE ${CMAKE_CURRENT_BINARY_DIR}/gcm.cache)
+
   message(STATUS "Generating CPP modules cache...")
 
   # Generate the gcm files for iostream and string.
@@ -17,9 +20,6 @@ if(CMAKE_COMPILER_IS_GNUCXX)
                           -std=c++${CMAKE_CXX_STANDARD}
                           ${SYS_MODULES_COMPILE_OPTIONS} iostream string
                   RESULT_VARIABLE RESULT)
-
-  # Target to clean the CPP modules cache.
-  add_custom_target(clean_cpp_modules COMMAND rm -rf ${CMAKE_CURRENT_BINARY_DIR}/${CPP_MODULES_CACHE})
 
   if(NOT RESULT EQUAL 0)
       message(WARNING "Could not generate CPP modules cache. Fragment 6 is broken.\n"

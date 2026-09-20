@@ -1,0 +1,83 @@
+// Project-local debug tasks
+//
+// For more documentation on how to configure debug tasks,
+// see: https://zed.dev/docs/debugger
+[
+  {
+    "label": "Fragment 0",
+    "build": {
+      "command": "cmake",
+      "args": ["--build", ".", "--target", "fragment0"],
+      "cwd": "$ZED_WORKTREE_ROOT/build",
+    },
+    "program": "$ZED_WORKTREE_ROOT/build/fragment0",
+    "request": "launch",
+    "adapter": "CodeLLDB",
+  },
+  {
+    "label": "Fragment 1",
+    "build": {
+      "command": "cmake",
+      "args": ["--build", ".", "--target", "fragment1"],
+      "cwd": "$ZED_WORKTREE_ROOT/build",
+    },
+    "program": "$ZED_WORKTREE_ROOT/build/fragment1",
+    "request": "launch",
+    "adapter": "CodeLLDB",
+  },
+  {
+    "label": "Fragment 2",
+    "build": {
+      "command": "cmake",
+      "args": ["--build", ".", "--target", "fragment2"],
+      "cwd": "$ZED_WORKTREE_ROOT/build",
+    },
+    "program": "$ZED_WORKTREE_ROOT/build/fragment2",
+    "request": "launch",
+    "adapter": "CodeLLDB",
+  },
+  {
+    "label": "Fragment 3",
+    "build": {
+      "command": "cmake",
+      "args": ["--build", ".", "--target", "fragment3"],
+      "cwd": "$ZED_WORKTREE_ROOT/build",
+    },
+    "program": "$ZED_WORKTREE_ROOT/build/fragment3",
+    "request": "launch",
+    "adapter": "CodeLLDB",
+  },
+  {
+    "label": "Fragment 4",
+    "build": {
+      "command": "cmake",
+      "args": ["--build", ".", "--target", "fragment4"],
+      "cwd": "$ZED_WORKTREE_ROOT/build",
+    },
+    "program": "$ZED_WORKTREE_ROOT/build/fragment4",
+    "request": "launch",
+    "adapter": "CodeLLDB",
+  },
+  {
+    "label": "Fragment 5",
+    "build": {
+      "command": "cmake",
+      "args": ["--build", ".", "--target", "fragment5"],
+      "cwd": "$ZED_WORKTREE_ROOT/build",
+    },
+    "program": "$ZED_WORKTREE_ROOT/build/fragment5",
+    "request": "launch",
+    "adapter": "CodeLLDB",
+  },
+  {
+    "label": "Fragment 6",
+    "build": {
+      "command": "cmake",
+      "args": ["--build", ".", "--target", "fragment6"],
+      "cwd": "$ZED_WORKTREE_ROOT/build",
+    },
+    "program": "$ZED_WORKTREE_ROOT/build/fragment6",
+    "request": "launch",
+    "adapter": "CodeLLDB",
+  },
+]
